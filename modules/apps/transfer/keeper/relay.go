@@ -274,11 +274,15 @@ func (k Keeper) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data t
 	}
 
 	// send to receiver
+	fmt.Println("sending to receiver", receiver, sdk.NewCoins(voucher))
 	if err := k.bankKeeper.SendCoinsFromModuleToAccount(
 		ctx, types.ModuleName, receiver, sdk.NewCoins(voucher),
 	); err != nil {
+		fmt.Println("Maybe this errored")
 		return err
 	}
+
+	fmt.Println("It def sends coins to receiver")
 
 	defer func() {
 		if transferAmount.IsInt64() {
