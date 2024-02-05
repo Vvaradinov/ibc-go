@@ -323,6 +323,7 @@ func (k Keeper) OnAcknowledgementPacket(ctx sdk.Context, packet channeltypes.Pac
 // OnTimeoutPacket refunds the sender since the original packet sent was
 // never received and has been timed out.
 func (k Keeper) OnTimeoutPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData) error {
+	fmt.Println("it timed out sadly")
 	return k.refundPacketToken(ctx, packet, data)
 }
 
@@ -333,6 +334,7 @@ func (k Keeper) OnTimeoutPacket(ctx sdk.Context, packet channeltypes.Packet, dat
 func (k Keeper) refundPacketToken(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData) error {
 	// NOTE: packet data type already checked in handler.go
 
+	fmt.Println("A refund happened")
 	// parse the denomination from the full denom path
 	trace := types.ParseDenomTrace(data.Denom)
 
