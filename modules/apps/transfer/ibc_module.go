@@ -169,6 +169,7 @@ func (im IBCModule) OnRecvPacket(
 	packet channeltypes.Packet,
 	relayer sdk.AccAddress,
 ) ibcexported.Acknowledgement {
+	fmt.Println("IBC GO OnRecvPacket")
 	ack := channeltypes.NewResultAcknowledgement([]byte{byte(1)})
 
 	var data types.FungibleTokenPacketData
@@ -209,6 +210,7 @@ func (im IBCModule) OnRecvPacket(
 		),
 	)
 
+	fmt.Println("IBC GO OnRecvPacket end")
 	// NOTE: acknowledgement will be written synchronously during IBC handler execution.
 	return ack
 }
